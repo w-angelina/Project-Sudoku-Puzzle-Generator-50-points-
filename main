@@ -30,7 +30,7 @@ public class SudokuGenerator {
         }
         return true;
     }
-    // 1.1 - helper method; verify if the number is allowed to be in that postion 
+    // 1.1 - verify if the number is allowed to be in that postion 
     // check row, column, and each 3x3 to ensure that the 
     // number is not already repeated (according to sudoku rules) 
     public static boolean check(int[][] board, int r, int c, int n){
@@ -63,6 +63,9 @@ public class SudokuGenerator {
         // return true only if the number does not already appear 
         return true; 
     }
+    // 1.2 - use arraylist to find all valid numbers you can put into that position
+    // also use Math.random to insert a valid number into result so that the 
+    // program doesn't generate the same puzzle
     private static ArrayList<Integer> validMoves(int[][] board, int row, int col){
         ArrayList<Integer> result = new ArrayList<>();
         for (int num = 1; num <= 9; num++){
