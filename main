@@ -1,0 +1,91 @@
+import java.util.ArrayList; 
+
+public class SudokuGenerator { 
+    public static void main(String[] args){ 
+        // declare the board, 9x9 stored in a 2d array 
+        int [][] sudokuBoard = new int[9][9]; 
+        
+        // call methods, fill and print 
+        fillBoard(sudokuBoard); 
+        printBoard(sudokuBoard); 
+        
+    } 
+    // 1.0 fill the board 
+    public static boolean fillBoard(int[][]board){ 
+        for (int r = 0; r < 9; r++){
+            for (int c = 0; c < 9; c++){
+                if (board[r][c] == 0){
+                    ArrayList<Integer> moves = validMoves(board, r, c);
+                    for (int i = 0; i < moves.size(); i++){
+                        int num = moves.get(i);
+                        board[r][c] = num;
+                        if (fillBoard(board)){
+                            return true; 
+                        }
+                        board[r][c] = 0;
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    // 1.1 - helper method; verify if the number is allowed to be in that postion 
+    // check row, column, and each 3x3 to ensure that the 
+    // number is not already repeated (according to sudoku rules) 
+    public static boolean check(int[][] board, int r, int c, int n){
+        // checking row 
+        for (int i = 0; i < 9; i++){
+            if (board[r][i] == n){
+                return false;
+            }
+        }
+        
+        // checking column 
+        for (int i = 0; i < 9; i++){
+            if (board[i][c] == n){
+                return false;
+            }
+        }
+        
+        // find the 3x3 the position is in 
+        int row = r - (r % 3);
+        int col = c - (c % 3);
+        
+        // checking the 3x3 the position is in 
+        for (int i = row; i < row + 3; i++){
+            for (int j = col; j < col + 3; j++){
+                if (board[i][j] == n){
+                    return false; 
+                }
+            }
+        }
+        // return true only if the number does not already appear 
+        return true; 
+    }
+    private static ArrayList<Integer> validMoves(int[][] board, int row, int col){
+        ArrayList<Integer> result = new ArrayList<>();
+        for (int num = 1; num <= 9; num++){
+            if (check(board, row, col, num)){
+                int index = (int)(Math.random() * (result.size())); 
+                result.add(index, num); 
+            }
+        }
+        return result; 
+    }
+    // 2.0 print out the board in a neat format 
+    public static void printBoard(int[][] board){
+        for (int i = 0; i < board.length; i++){
+            if (i % 3 == 0){ 
+                System.out.println("---------------------"); 
+            }
+            for (int j = 0; j < board[0].length; j++){
+                if (j % 3 == 0){ 
+                    System.out.print("|"); 
+                }
+                System.out.print(board[i][j] + " "); 
+            }
+            System.out.println(); 
+        }
+    }
+}
