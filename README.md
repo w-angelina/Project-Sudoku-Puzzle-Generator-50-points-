@@ -8,3 +8,7 @@ note: fill in later cuz library is closing in 3 mins
 
 Running the Code:
 To run the code, make a copy of the code in the file named "main". Use an online Java compiler, such as CodeHS's Java Sandbox, and paste the code into the editor.
+
+List of Files:
+> README.md
+> main
