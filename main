@@ -10,7 +10,7 @@ public class SudokuGenerator {
         printBoard(sudokuBoard); 
         
     } 
-    // 1.0 fill the board 
+    // 1.0 fill the board w/ recursion
     public static boolean fillBoard(int[][]board){ 
         for (int r = 0; r < 9; r++){
             for (int c = 0; c < 9; c++){
