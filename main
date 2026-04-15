@@ -17,8 +17,7 @@ public class SudokuGenerator {
                 if (board[r][c] == 0){
                     ArrayList<Integer> moves = validMoves(board, r, c);
                     for (int i = 0; i < moves.size(); i++){
-                        int num = moves.get(i);
-                        board[r][c] = num;
+                        board[r][c] = moves.get(i);
                         if (fillBoard(board)){
                             return true; 
                         }
