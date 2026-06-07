@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class SudokuGenerator { 
     public static void main(String[] args){ 
-        // declare the board, 9x9 stored in a 2d array 
+        // Declare the board, 9x9 stored in a 2d array 
         int [][] sudokuBoard = new int[9][9]; 
         
-        // call methods, fill and print 
+        // Call methods, fillBoard and printBoard
         fillBoard(sudokuBoard); 
         printBoard(sudokuBoard); 
         
